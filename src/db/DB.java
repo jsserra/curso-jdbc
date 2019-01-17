@@ -10,9 +10,10 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class DB {
-	
+	//Connection vai ser o objeto de conexão com BD do JDBC. Obs. o import do Connection é java.sql
 	private static Connection conn = null;
 	
+	//Método para conectar com BD
 	public static Connection getConnection() {
 		if(conn == null) {
 			try {
@@ -27,6 +28,7 @@ public class DB {
 		return conn;		
 	}
 	
+	//Método para fechar a conexão
 	public static void closeConnectio() {
 		if (conn != null) {
 			try {
@@ -37,10 +39,11 @@ public class DB {
 		}
 	}
 	
+	//Método responsável por carregar as propriedadese que estão no arquivo db.properties
 	private static Properties loadProperties() {
 		try (FileInputStream fs = new FileInputStream("db.properties")){
 			Properties props = new Properties();
-			props.load(fs);
+			props.load(fs); //load faz leitura do arquivo Properties apontado pelo FileInputStream fs
 			return props;
 		}
 		catch (IOException e) {
